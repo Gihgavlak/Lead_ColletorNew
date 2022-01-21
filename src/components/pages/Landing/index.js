@@ -3,7 +3,13 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import Header from "../../Header";
 
 export default class Landing extends Component {
-/*
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: this.props.state ? this.props.state.message : '',
+    };
+  }
+  
   save = (lead) => {
     const url = "http://localhost:8080/leads";
     let data = {
@@ -13,11 +19,20 @@ export default class Landing extends Component {
     };
     const requestInfo = {
       method: "POST",
-      body: "",
+      body: JSON.stringify(data),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
     };
-    fetch(url, requestInfo);
+    fetch(url, requestInfo).then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          "Tente novamente"
+        );
+      }
+      return response;
+    });
   };
-*/
 
   render() {
     return (
