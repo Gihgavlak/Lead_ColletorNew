@@ -9,7 +9,7 @@ export default class Landing extends Component {
       message: this.props.state ? this.props.state.message : '',
     };
   }
-  
+
   save = (lead) => {
     const url = "http://localhost:8080/leads";
     let data = {
@@ -36,30 +36,54 @@ export default class Landing extends Component {
 
   render() {
     return (
-      <div>
-        <Header title="Landing Page" />
+      <div className="container">
+        <Header title="Receba novidades!" />
         <hr />
-        <Form>
+        <Form className="form">
           <FormGroup>
-            <Label for="name"> Nome: </Label>
-            <Input type="text" id="name" placeholder="Informe o seu nome" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="email"> Email: </Label>
-            <Input type="text" id="email" placeholder="Informe o seu email" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="observations"> Observações: </Label>
+            <Label className="label" for="nome">
+              Nome Completo
+            </Label>
             <Input
               type="text"
-              id="observations"
-              placeholder="Digite alguma observação"
+              id="nome"
+              placeholder="Digite o seu nome"
+              onChange={(e) => (this.nome = e.target.value)}
             />
           </FormGroup>
-          <Button color="danger" block>
-            {" "}
-            ENVIAR
-          </Button>
+          <FormGroup>
+            <Label className="label" for="email">
+              Email
+            </Label>
+            <Input
+              type="email"
+              id="email"
+              placeholder="seunome@dominio.com"
+              onChange={(e) => (this.email = e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label className="label" for="observacoes">
+              Observações
+            </Label>
+            <textarea
+              class="form-control"
+              id="observacoes"
+              rows="3"
+              placeholder="Digite suas principais características"
+              onChange={(e) => (this.observacoes = e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Button
+              className="button"
+              color="success"
+              block
+              onClick={this.saveLead}
+            >
+              Enviar
+            </Button>
+          </FormGroup>
         </Form>
       </div>
     );
